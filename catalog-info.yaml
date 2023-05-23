@@ -1,0 +1,49 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: dnowell-dnowell-poi-map-app-dev
+  annotations:
+    argocd/app-name: dnowell-dnowell-poi-map-app-dev
+    backstage.io/kubernetes-id: dnowell-dnowell-poi-map-app-dev
+    backstage.io/kubernetes-namespace: dnowell
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=dnowell-dnowell-poi-map-app-dev'
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: Summit23Janus1/dnowell-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.summit23rock.n26o.p1.openshiftapps.com/dev-pipelines/ns/dnowell/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.summit23rock.n26o.p1.openshiftapps.com/k8s/ns/dnowell/deployments/dnowell-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.summit23rock.n26o.p1.openshiftapps.com/#https://github.com/Summit23Janus1/dnowell-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://dnowell-poi-map-app-dnowell.apps.summit23rock.n26o.p1.openshiftapps.com
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/dnowell"
+  system: workshop-system-dnowell
+  consumesApis:
+    - gateway-api-dnowell
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-dnowell
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/dnowell"
